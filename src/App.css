@@ -44,4 +44,6 @@
 } */
 .btn{
   background-color: var(--main-color) !important;
+  border-radius: 2rem !important;
+  color: #ffffff !important;
 }

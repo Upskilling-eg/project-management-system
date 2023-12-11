@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
-// Define the shape of your authentication data
+// Define the shape of your authentication data//
 export interface IAuth {
   adminData: string;
   saveAdminData: () => void;

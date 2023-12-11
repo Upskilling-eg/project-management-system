@@ -6,7 +6,7 @@ import React from "react";
  import "@fortawesome/fontawesome-free/css/all.min.css";
  import "react-toastify/dist/ReactToastify.css";
  import "./index.css";
- import AuthContextProvider from "./Context/AuthContext.ts";
+ import {AuthContextProvider} from "./Context/AuthContext.ts";
 
  ReactDOM.createRoot(document.getElementById("root")!).render(
    <React.StrictMode>

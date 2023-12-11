@@ -12,7 +12,7 @@ export let AuthContext = createContext<IAuth | null>(null);
 let requestHeaders = {
   Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
 };
-
+// ***************لbase url******
 let baseUrl = "https://upskilling-egypt.com:3003/api/v1";
 export default function AuthContextProvider(_props: any) {
   //*************control admin data state***********

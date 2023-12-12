@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 export interface IAuth {
   adminData: string;
   saveAdminData: () => void;
-  requestHeaders: any;
+  requestHeaders: any ;
   baseUrl: string;
 }
 

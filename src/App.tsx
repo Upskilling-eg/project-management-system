@@ -12,8 +12,11 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Projects from './Components/Projects/Projects';
 import Users from './Components/Users/Users';
 import Tasks from './Components/Tasks/Tasks';
+// import { useContext } from 'react';
+// import { AuthContext } from './Context/AuthContext';
 
 function App() {
+  // let { adminData,saveAdminData}=useContext(AuthContext)
 
   const routes = createBrowserRouter([{
      path:'/',

@@ -45,7 +45,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = (props) =
     adminData,
     saveAdminData,
     requestHeaders,
-    baseUrl: "https://upskilling-egypt.com:3003/api/v1",
+    baseUrl: "http://upskilling-egypt.com:3003/api/v1",
   };
 
   return <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>;

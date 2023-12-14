@@ -3,12 +3,12 @@ import { Navigate } from 'react-router-dom';
 
 
 interface Props{
-    adminData :any ;
+   userData :any ;
     children :React.ReactNode;
 }
 
-export default function ProtectedRoute({adminData, children}:Props) {
-    if (adminData == null && localStorage.getItem("adminToken")==null){
+export default function ProtectedRoute({userData, children}:Props) {
+    if (userData == null && localStorage.getItem("userToken")==null){
         return <Navigate to="/login"/>
     }else{
         return <>{children}</>

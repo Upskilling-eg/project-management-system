@@ -3,9 +3,9 @@ import { jwtDecode } from "jwt-decode";
 
 // Define the shape of your authentication data//
 export interface IAuth {
-  adminData: string;
-  saveAdminData: () => void;
-  requestHeaders: any ;
+  userData: string;
+  saveUserData: () => void;
+  requestHeaders: any;
   baseUrl: string;
 }
 
@@ -19,31 +19,31 @@ interface AuthContextProviderProps {
 
 // AuthContextProvider component that provides the AuthContext to its children
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = (props) => {
-  const [adminData, setAdminData] = useState<any | null>(null);
+  const [userData, setUserData] = useState<any | null>(null);
 
-  // Save admin data function
-  const saveAdminData = () => {
-    const encodedToken = localStorage.getItem("adminToken");
+  // Save user data function
+  const saveUserData = () => {
+    const encodedToken = localStorage.getItem("userToken");
     const decodedToken = jwtDecode(encodedToken!);
-    setAdminData(decodedToken);
+    setUserData(decodedToken);
   };
 
   // Compute request headers
   const requestHeaders = {
-    Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+    Authorization: `Bearer ${localStorage.getItem("userToken")}`,
   };
 
-  // On component mount, check for adminToken and save data
+  // On component mount, check for userToken and save data
   useEffect(() => {
-    if (localStorage.getItem("adminToken")) {
-      saveAdminData();
+    if (localStorage.getItem("userToken")) {
+      saveUserData();
     }
   }, []);
 
   // Value to be provided by the context
   const contextValue: IAuth = {
-    adminData,
-    saveAdminData,
+    userData,
+    saveUserData,
     requestHeaders,
     baseUrl: "http://upskilling-egypt.com:3003/api/v1",
   };

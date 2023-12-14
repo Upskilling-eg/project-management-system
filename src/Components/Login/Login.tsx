@@ -1,15 +1,19 @@
 // nadia.mohamed.taha166@gmail.com
 // @Password123!
+
 import axios from 'axios';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/pms.png';
-import { AuthContext } from '../../Context/AuthContext';
+import { AuthContext } from './../../Context/AuthContext';
+import { ToastContext } from '../../Context/ToastContext';
+
 
 const Login: React.FC = ()=> {
-  let { saveAdminData, baseUrl} = useContext(AuthContext);
-  // const navigate = useNavigate();
+  let { saveUserData, baseUrl} = useContext(AuthContext);
+  let {getToastValue} = useContext(ToastContext);
+  const navigate = useNavigate();
   type FormValues = {
     email: string,
     password: string
@@ -27,7 +31,7 @@ const Login: React.FC = ()=> {
     .post(`${baseUrl}/Users/Login`, data)
     .then((response) => {
       console.log(response);
-      const userToken = localStorage.setItem('userToken', response.data.token )
+      localStorage.setItem('userToken', response.data.token )
       saveUserData();
       navigate('/dashboard');
       getToastValue("success", "Loged in successfully!")
@@ -37,6 +41,7 @@ const Login: React.FC = ()=> {
       getToastValue("error", error.response?.data.message || "An error occurred");
     })
   }
+
 
   return (
     <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>

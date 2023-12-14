@@ -23,7 +23,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+      <ToastContextProvider>
+      <App />
+      </ToastContextProvider>
+
+    </AuthContextProvider>
+
   </React.StrictMode>,
 )
 

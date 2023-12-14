@@ -7,10 +7,15 @@ import { ToastContainer } from "react-toastify";
 import { AuthContext } from '../../Context/AuthContext';
 import { ToastContext } from '../../Context/ToastContext';
 import logo from './../../assets/images/pms.png';
+import { IAuth } from './../../Context/AuthContext';
+import { ToastContextType } from './../../Context/ToastContext';
+
+
 
 const VerifyUser: React.FC  = () => {
-  let { baseUrl, requestHeaders } = useContext(AuthContext);
-  const { getToastValue } = useContext(ToastContext);
+  
+  const { baseUrl, requestHeaders }:IAuth= useContext(AuthContext);
+  const { getToastValue }: ToastContextType= useContext(ToastContext);
   const navigate = useNavigate();
 
     const {

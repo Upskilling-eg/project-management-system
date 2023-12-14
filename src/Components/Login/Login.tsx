@@ -12,10 +12,9 @@ import { ToastContext } from '../../Context/ToastContext';
 
 const Login: React.FC = ()=> {
   const { saveUserData, baseUrl} = useContext(AuthContext);
-<<<<<<< HEAD
-=======
+
   const{ getToastValue} = useContext(ToastContext)
->>>>>>> toast-context
+
   const navigate = useNavigate();
 
  interface FormValues {

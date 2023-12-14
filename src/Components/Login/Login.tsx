@@ -4,20 +4,19 @@
 import axios from 'axios';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/pms.png';
 import { AuthContext } from './../../Context/AuthContext';
-import logo from './../../assets/images/pms.png';
 import { ToastContext } from '../../Context/ToastContext';
 
+const Login: React.FC = ()=> {
+  const { saveUserData, baseUrl} = useContext(AuthContext);
 
-const Login: React.FC = () => {
-  const { saveUserData, baseUrl } = useContext(AuthContext);
-
-  const { getToastValue } = useContext(ToastContext)
+  const{ getToastValue} = useContext(ToastContext)
 
   const navigate = useNavigate();
 
-  interface FormValues {
+ interface FormValues {
     email: string,
     password: string
   }
@@ -28,93 +27,158 @@ const Login: React.FC = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async(data) =>{
     console.log(data);
     await axios
-      .post(`${baseUrl}/Users/Login`, data)
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem('userToken', response.data.token)
-        saveUserData();
-        navigate('/dashboard');
-        getToastValue("success", "Congratulations! You are logIn");
-      })
-      .catch((error) => {
-        console.log(error);
-        getToastValue("error", error.response?.data.message || "An error occurred");
-      })
-    };
+    .post(`${baseUrl}/Users/Login`, data)
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem('userToken', response.data.token)
+      saveUserData();
+      navigate('/dashboard');
+      getToastValue("success", "Congratulations! You are logIn");
+    })
+    .catch((error)=>{
+      console.log(error);
+      getToastValue("error", error.response?.data.message || "An error occurred");
+    })
+  }
 
-    return (
-      <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
+=======
+
+import axios from 'axios';
+import { useContext } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/pms.png';
+import { AuthContext } from '../../Context/AuthContext';
+
+const Login: React.FC = ()=> {
+  let { saveAdminData, baseUrl} = useContext(AuthContext);
+  // const navigate = useNavigate();
+  type FormValues = {
+    email: string,
+    password: string
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async(data) =>{
+    console.log(data);
+    await axios
+    .post(`${baseUrl}/Users/Login`, data)
+    .then((response) => {
+      console.log(response);
+      // const adminToken = localStorage.setItem('adminToken', response.data.token )
+      // saveAdminData();
+      // navigate('/dashboard');
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
+>>>>>>> logIn
+  return (
+    <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
         <div className="text-center mb-2">
           <img src={logo} alt="" className='img-fluid' />
         </div>
         <div className=' w-50 h-50'>
-
+<<<<<<< HEAD
           <form onSubmit={handleSubmit(onSubmit)}
-
-            action="" className="login-wrapper m-auto w-75 my-5 py-3 px-5">
-            <p className='text-white'>welcome to PMS</p>
-            <h2 className='title mb-5'>Login</h2>
-            <div className="form-group my-3">
-              <label className='label-title mb-2'>E-mail</label>
-
-              <input
-                {...register("email",
-                  {
-                    required: true,
-                    pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
-                  })}
-                type="email"
-                name="email"
-                className="form-control custom-input"
-                placeholder="Enter your E-mail" />
+=======
+          <form onSubmit={handleSubmit(onSubmit)}
+>>>>>>> logIn
+                action="" className="login-wrapper m-auto w-75 my-5 py-3 px-5">
+                  <p className='text-white'>welcome to PMS</p>
+                  <h2 className='title mb-5'>Login</h2>
+                <div className="form-group my-3">
+                  <label className='label-title mb-2'>E-mail</label>
+<<<<<<< HEAD
+                      <input
+=======
+                      <input
+>>>>>>> logIn
+                        {...register("email",
+                        { required: true,
+                          pattern:/^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
+                        })}
+                        type="email"
+                        name="email"
+<<<<<<< HEAD
+                        className="form-control custom-input"
+=======
+                        className="form-control custom-input"
+>>>>>>> logIn
+                        placeholder="Enter your E-mail"/>
 
               {errors.email && errors.email.type === "required" && (<span className='text-danger '>Email is required</span>)}
 
-              {errors.email && errors.email.type === "pattern" && (<span className='text-danger '>Email is invalid</span>)}
-            </div>
-            <div className="form-group my-3">
-              <label className='label-title mb-2'>Password</label>
-
-              <input
-
-                {...register("password",
-                  {
-                    required: true,
-                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                  })}
-                type="password"
-
-                name="password"
-                className="form-control custom-input" placeholder="Password" />
-              {errors.password && errors.password.type === "required" && (<span className='text-danger'>Password is required</span>)}
-              {errors.password && errors.password.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
-            </div>
-
-            <div className="form-group my-3 d-flex justify-content-between">
-              <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
-              <Link
-                to='/request-reset'></Link>
-
-              <div className="form-group my-3 d-flex justify-content-end">
-                {/* <span>Register Now?</span> */}
-                <Link to='/'
-                  // to='/request-reset-pass'
-                  className='text-white text-decoration-none'>Forgot Password?</Link>
-              </div>
-              <div className="form-group my-3">
-                <button type="submit" className="btn w-100">
-                  Login
-                </button>
-
-              </div>
-              </div>
+                      {errors.email && errors.email.type === "pattern" && (<span className='text-danger '>Email is invalid</span>)}
+                </div>
+                <div className="form-group my-3">
+                  <label className='label-title mb-2'>Password</label>
+<<<<<<< HEAD
+                      <input
+=======
+                      <input
+>>>>>>> logIn
+                      {...register("password",
+                      { required: true,
+                        pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                      })}
+                      type="password"
+<<<<<<< HEAD
+                      name="password"
+=======
+                      name="password"
+>>>>>>> logIn
+                      className="form-control custom-input"  placeholder="Password"/>
+                      {errors.password && errors.password.type === "required" && (<span className='text-danger'>Password is required</span>)}
+                      {errors.password && errors.password.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
+                  </div>
+<<<<<<< HEAD
+                  <div className="form-group my-3 d-flex justify-content-between">
+                      <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
+                      <Link
+                      to='/request-reset'
+=======
+                  <div className="form-group my-3 d-flex justify-content-end">
+                      {/* <span>Register Now?</span> */}
+                      <Link to='/'
+                      // to='/request-reset-pass'
+>>>>>>> logIn
+                      className='text-white text-decoration-none'>Forgot Password?</Link>
+                  </div>
+                  <div className="form-group my-3">
+                    <button type="submit" className="btn w-100">
+                      Login
+                    </button>
+<<<<<<< HEAD
+                  </div>
           </form>
         </div>
-      </div>
-    );
-  };
+    </div>
 
-  export default Login;
+=======
+                  </div>
+          </form>
+        </div>
+    </div>
+
+>>>>>>> logIn
+  )
+}
+export default Login;
+
+
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> logIn

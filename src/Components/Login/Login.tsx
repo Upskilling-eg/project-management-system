@@ -10,7 +10,7 @@ import logo from './../../assets/images/pms.png';
 
 
 const Login: React.FC = ()=> {
-  const { saveAdminData, baseUrl} = useContext(AuthContext);
+  const { saveUserData, baseUrl} = useContext(AuthContext);
   const navigate = useNavigate();
   type FormValues = {
     email: string,
@@ -30,7 +30,7 @@ const Login: React.FC = ()=> {
     .then((response) => {
       console.log(response);
       localStorage.setItem('adminToken', response.data.token)
-      saveAdminData();
+      saveUserData();
       navigate('/dashboard');
     })
     .catch((error)=>{

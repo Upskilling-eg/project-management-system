@@ -7,12 +7,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './../../Context/AuthContext';
 import logo from './../../assets/images/pms.png';
+import { ToastContext } from '../../Context/ToastContext';
 
 
 const Login: React.FC = ()=> {
-  const { saveAdminData, baseUrl} = useContext(AuthContext);
+  const { saveUserData, baseUrl} = useContext(AuthContext);
+  const{ getToastValue} = useContext(ToastContext)
   const navigate = useNavigate();
-  type FormValues = {
+
+ interface FormValues {
     email: string,
     password: string
   }
@@ -30,8 +33,9 @@ const Login: React.FC = ()=> {
     .then((response) => {
       console.log(response);
       localStorage.setItem('adminToken', response.data.token)
-      saveAdminData();
+      saveUserData();
       navigate('/dashboard');
+      getToastValue("success", "Congratulations! You are logIn");
     })
     .catch((error)=>{
       console.log(error);

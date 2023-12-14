@@ -84,8 +84,8 @@ const Login: React.FC = ()=> {
                       {errors.password && errors.password.type === "required" && (<span className='text-danger'>Password is required</span>)}
                       {errors.password && errors.password.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
                   </div>
-                  <div className="form-group my-3 d-flex justify-content-end">
-                      {/* <span>Register Now?</span> */}
+                  <div className="form-group my-3 d-flex justify-content-between">
+                      <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
                       <Link to='/'
                       // to='/request-reset-pass'
                       className='text-white text-decoration-none'>Forgot Password?</Link>

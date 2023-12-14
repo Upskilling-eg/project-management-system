@@ -10,7 +10,7 @@ import { AuthContext } from './../../Context/AuthContext';
 import { ToastContext } from '../../Context/ToastContext';
 
 const Login: React.FC = ()=> {
-  let { saveAdUserData, baseUrl} = useContext(AuthContext);
+  let { saveUserData, baseUrl} = useContext(AuthContext);
   // const navigate = useNavigate();
   type FormValues = {
     email: string,

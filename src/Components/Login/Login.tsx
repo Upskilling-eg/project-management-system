@@ -8,10 +8,14 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/images/pms.png';
 import { AuthContext } from './../../Context/AuthContext';
 import { ToastContext } from '../../Context/ToastContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = ()=> {
   let { saveUserData, baseUrl} = useContext(AuthContext);
-  // const navigate = useNavigate();
+  let { getToastValue} = useContext(AuthContext);
+ 
+  const navigate = useNavigate();
+ 
   type FormValues = {
     email: string,
     password: string
@@ -29,54 +33,17 @@ const Login: React.FC = ()=> {
     .post(`${baseUrl}/Users/Login`, data)
     .then((response) => {
       console.log(response);
-      // const userToken = localStorage.setItem('userToken', response.data.token )
-      // saveUserData();
-      // navigate('/dashboard');
+      const userToken = localStorage.setItem('userToken', response.data.token )
+      saveUserData();
+      navigate('/dashboard');
+      getToastValue("success", "Loged in successfully!")
     })
     .catch((error)=>{
       console.log(error);
+      getToastValue("error", error.response?.data.message || "An error occurred");
     })
   }
-
-=======
-
-import axios from 'axios';
-import { useContext } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/images/pms.png';
-import { AuthContext } from '../../Context/AuthContext';
-
-const Login: React.FC = ()=> {
-  let { saveAdminData, baseUrl} = useContext(AuthContext);
-  // const navigate = useNavigate();
-  type FormValues = {
-    email: string,
-    password: string
-  }
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
   
-  const onSubmit: SubmitHandler<FormValues> = async(data) =>{
-    console.log(data);
-    await axios
-    .post(`${baseUrl}/Users/Login`, data)
-    .then((response) => {
-      console.log(response);
-      // const adminToken = localStorage.setItem('adminToken', response.data.token )
-      // saveAdminData();
-      // navigate('/dashboard');
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-  }
-
->>>>>>> logIn
   return (
     <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
         <div className="text-center mb-2">

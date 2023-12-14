@@ -2,7 +2,7 @@
 import { createContext,ReactNode } from 'react';
 import { toast } from 'react-toastify';
 
-interface ToastContextType{
+export interface ToastContextType{
     getToastValue: (type: ToastType, message: string) => void;
 }
 interface ToastContextProviderProps {

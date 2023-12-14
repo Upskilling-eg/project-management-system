@@ -1,15 +1,15 @@
 import axios from "axios";
-import logo from './../../assets/images/pms.png';
-import {  SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { useContext } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { AuthContext } from '../../Context/AuthContext';
 import { ToastContext } from './../../Context/ToastContext';
+import logo from './../../assets/images/pms.png';
 
 
 const Register: React.FC = () => {
-  let { saveUserData, baseUrl } = useContext(AuthContext);
+  let { baseUrl } = useContext(AuthContext);
   let { getToastValue } = useContext(ToastContext);
   const navigate = useNavigate();
 

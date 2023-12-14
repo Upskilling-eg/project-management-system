@@ -86,8 +86,8 @@ const Login: React.FC = ()=> {
                   </div>
                   <div className="form-group my-3 d-flex justify-content-between">
                       <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
-                      <Link to='/'
-                      // to='/request-reset-pass'
+                      <Link 
+                      to='/request-reset'
                       className='text-white text-decoration-none'>Forgot Password?</Link>
                   </div>
                   <div className="form-group my-3">

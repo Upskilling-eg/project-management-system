@@ -12,8 +12,8 @@ interface ToastContextProviderProps {
 export const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 const ToastContextProvider: React.FC<ToastContextProviderProps> = (props)=>{
-  
-    const getToastValue =(type: string, message: string)=>{
+    type ToastType = "success" | "error" | "info" | "warning";
+    const getToastValue =(type: ToastType, message: string)=>{
         return toast[type](message, {
                 position: "top-right",
                 autoClose: 3000,

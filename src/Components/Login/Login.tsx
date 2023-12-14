@@ -41,6 +41,7 @@ const Login: React.FC = ()=> {
     })
     .catch((error)=>{
       console.log(error);
+      getToastValue("error", error.response?.data.message || "An error occurred");
     })
   }
 

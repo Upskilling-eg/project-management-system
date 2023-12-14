@@ -1,46 +1,5 @@
 // nadia.mohamed.taha166@gmail.com
 // @Password123!
-
-import axios from 'axios';
-import { useContext } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/images/pms.png';
-import { AuthContext } from './../../Context/AuthContext';
-import { ToastContext } from '../../Context/ToastContext';
-import { useNavigate } from 'react-router-dom';
-
-const Login: React.FC = ()=> {
-  let { saveAdUserData, baseUrl} = useContext(AuthContext);
-  // const navigate = useNavigate();
-  type FormValues = {
-    email: string,
-    password: string
-  }
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
-
-  const onSubmit: SubmitHandler<FormValues> = async(data) =>{
-    console.log(data);
-    await axios
-    .post(`${baseUrl}/Users/Login`, data)
-    .then((response) => {
-      console.log(response);
-      // const userToken = localStorage.setItem('userToken', response.data.token )
-      // saveUserData();
-      // navigate('/dashboard');
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-  }
-
-=======
-
 import axios from 'axios';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';

@@ -1,3 +1,5 @@
+// nadia.mohamed.taha166@gmail.com
+// @Password123!
 
 import axios from 'axios';
 import { useContext } from 'react';
@@ -36,26 +38,65 @@ const Login: React.FC = ()=> {
     })
   }
 
+=======
+
+import axios from 'axios';
+import { useContext } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/pms.png';
+import { AuthContext } from '../../Context/AuthContext';
+
+const Login: React.FC = ()=> {
+  let { saveAdminData, baseUrl} = useContext(AuthContext);
+  // const navigate = useNavigate();
+  type FormValues = {
+    email: string,
+    password: string
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+  
+  const onSubmit: SubmitHandler<FormValues> = async(data) =>{
+    console.log(data);
+    await axios
+    .post(`${baseUrl}/Users/Login`, data)
+    .then((response) => {
+      console.log(response);
+      // const adminToken = localStorage.setItem('adminToken', response.data.token )
+      // saveAdminData();
+      // navigate('/dashboard');
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
+>>>>>>> logIn
   return (
     <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
         <div className="text-center mb-2">
             <img src={logo} alt="" className='img-fluid' />
         </div>
         <div className=' w-50 h-50'>
-          <form onSubmit={handleSubmit(onSubmit)} 
+          <form onSubmit={handleSubmit(onSubmit)}
                 action="" className="login-wrapper m-auto w-75 my-5 py-3 px-5">
                   <p className='text-white'>welcome to PMS</p>
                   <h2 className='title mb-5'>Login</h2>
                 <div className="form-group my-3">
                   <label className='label-title mb-2'>E-mail</label>
-                      <input 
+                      <input
                         {...register("email",
                         { required: true,
                           pattern:/^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
                         })}
                         type="email"
                         name="email"
-                        className="form-control custom-input" 
+                        className="form-control custom-input"
                         placeholder="Enter your E-mail"/>
 
                       {errors.email && errors.email.type === "required" && (<span className='text-danger '>Email is required</span>)}
@@ -64,21 +105,21 @@ const Login: React.FC = ()=> {
                 </div>
                 <div className="form-group my-3">
                   <label className='label-title mb-2'>Password</label>
-                      <input 
+                      <input
                       {...register("password",
                       { required: true,
                         pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                       })}
                       type="password"
-                      name="password"                 
+                      name="password"
                       className="form-control custom-input"  placeholder="Password"/>
                       {errors.password && errors.password.type === "required" && (<span className='text-danger'>Password is required</span>)}
                       {errors.password && errors.password.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
                   </div>
-                  <div className="form-group my-3 d-flex justify-content-end">
-                      {/* <span>Register Now?</span> */}
-                      <Link to='/'
-                      // to='/request-reset-pass'
+                  <div className="form-group my-3 d-flex justify-content-between">
+                      <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
+                      <Link 
+                      to='/request-reset'
                       className='text-white text-decoration-none'>Forgot Password?</Link>
                   </div>
                   <div className="form-group my-3">
@@ -86,15 +127,14 @@ const Login: React.FC = ()=> {
                       Login
                     </button>
                   </div>
-<div className="form-group my-3 d-flex justify-content-between">  
- <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
-                    
-<Link to="/forget"className='text-white text-decoration-none'>Forgot Password?</Link> 
-</div>         
           </form>
         </div>      
     </div>
-    
+
   )
 }
 export default Login;
+
+
+
+

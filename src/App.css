@@ -4,11 +4,8 @@
   ;
 }
 .auth-container{
-<<<<<<< HEAD
   background-image: url('./assets/images/bg3.png');
-=======
-  background-image: url(./assets/images/bg3.png);
->>>>>>> logIn
+  /* background-image: url(./assets/images/bg3.png); */
   background-size: cover;
   background-position: center center;
 }
@@ -36,36 +33,21 @@
 .label-title{
   color: var(--main-color);
 }
-<<<<<<< HEAD
 form{
   background-color: rgba(49, 89, 81, 0.9) !important;
 }
-=======
->>>>>>> logIn
 .custom-input{
   background-color: rgba(49, 89, 81, 0.9) !important;
   color: #fff !important;
   border: none !important;
-<<<<<<< HEAD
   border-bottom: 2px solid #fff !important;
   border-radius: 0 !important;
 }
-=======
-  border-bottom: 2px solid #dd1a1a !important;
-  border-radius: 0 !important;
-}
-/* input{
-  background-color: rgba(49, 89, 81, 0.9) !important;
-} */
->>>>>>> logIn
 .btn{
   background-color: var(--main-color) !important;
   border-radius: 2rem !important;
   color: #ffffff !important;
-<<<<<<< HEAD
 }
 button[type="submit"]{
   font-size: 1.5rem;
-=======
->>>>>>> logIn
 }

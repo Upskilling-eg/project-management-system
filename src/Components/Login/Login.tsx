@@ -9,8 +9,6 @@ import { AuthContext } from './../../Context/AuthContext';
 import logo from './../../assets/images/pms.png';
 
 
-
-
 const Login: React.FC = ()=> {
   const { saveAdminData, baseUrl} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -24,7 +22,7 @@ const Login: React.FC = ()=> {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  
+
   const onSubmit: SubmitHandler<FormValues> = async(data) =>{
     console.log(data);
     await axios
@@ -46,20 +44,20 @@ const Login: React.FC = ()=> {
             <img src={logo} alt="" className='img-fluid' />
         </div>
         <div className=' w-50 h-50'>
-          <form onSubmit={handleSubmit(onSubmit)} 
+          <form onSubmit={handleSubmit(onSubmit)}
                 action="" className="login-wrapper m-auto w-75 my-5 py-3 px-5">
                   <p className='text-white'>welcome to PMS</p>
                   <h2 className='title mb-5'>Login</h2>
                 <div className="form-group my-3">
                   <label className='label-title mb-2'>E-mail</label>
-                      <input 
+                      <input
                         {...register("email",
                         { required: true,
                           pattern:/^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
                         })}
                         type="email"
                         name="email"
-                        className="form-control custom-input" 
+                        className="form-control custom-input"
                         placeholder="Enter your E-mail"/>
 
                       {errors.email && errors.email.type === "required" && (<span className='text-danger '>Email is required</span>)}
@@ -68,13 +66,13 @@ const Login: React.FC = ()=> {
                 </div>
                 <div className="form-group my-3">
                   <label className='label-title mb-2'>Password</label>
-                      <input 
+                      <input
                       {...register("password",
                       { required: true,
                         pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                       })}
                       type="password"
-                      name="password"                 
+                      name="password"
                       className="form-control custom-input"  placeholder="Password"/>
                       {errors.password && errors.password.type === "required" && (<span className='text-danger'>Password is required</span>)}
                       {errors.password && errors.password.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
@@ -89,11 +87,11 @@ const Login: React.FC = ()=> {
                     <button type="submit" className="btn w-100">
                       Login
                     </button>
-                  </div>           
+                  </div>
           </form>
-        </div>      
+        </div>
     </div>
-    
+
   )
 }
 export default Login;

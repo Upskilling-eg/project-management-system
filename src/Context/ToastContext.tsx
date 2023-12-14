@@ -13,6 +13,7 @@ export const ToastContext = createContext<ToastContextType | undefined>(undefine
 
 const ToastContextProvider: React.FC<ToastContextProviderProps> = (props)=>{
     type ToastType = "success" | "error" | "info" | "warning";
+    
     const getToastValue =(type: ToastType, message: string)=>{
         return toast[type](message, {
                 position: "top-right",

@@ -17,15 +17,15 @@ import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
 
 function App() {
-  const { adminData, saveAdminData } = useContext(AuthContext)
+  const { userData, saveUserData } = useContext(AuthContext)
 
   const routes = createBrowserRouter([{
     path: '/',
     element: <AuthLayout />,
     errorElement: <Notfound />,
     children: [
-      { index: true, element: <Login saveAdminData={saveAdminData} /> },
-      { path: 'login', element: <Login saveAdminData={saveAdminData} /> },
+      { index: true, element: <Login saveUserData={saveUserData} /> },
+      { path: 'login', element: <Login saveUserData={saveUserData} /> },
       { path: 'register', element: <Register /> },
       { path: 'request-reset', element: <RequestReset /> },
       { path: 'reset-password', element: <ResetPassword /> },
@@ -35,8 +35,8 @@ function App() {
     path: 'dashboard',
 
     element:
-      <ProtectedRoute adminData={adminData}>
-        <MasterLayout adminData={adminData} />
+      <ProtectedRoute userData={userData}>
+        <MasterLayout userData={userData} />
       </ProtectedRoute>
     ,
     errorElement: <Notfound />,

@@ -34,7 +34,7 @@ const Login: React.FC = ()=> {
     .post(`${baseUrl}/Users/Login`, data)
     .then((response) => {
       console.log(response);
-      localStorage.setItem('adminToken', response.data.token)
+      localStorage.setItem('userToken', response.data.token)
       saveUserData();
       navigate('/dashboard');
       getToastValue("success", "Congratulations! You are logIn");

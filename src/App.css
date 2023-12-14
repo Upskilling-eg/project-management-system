@@ -32,6 +32,9 @@
 .label-title{
   color: var(--main-color);
 }
+form{
+  background-color: rgba(49, 89, 81, 0.9) !important;
+}
 .custom-input{
   background-color: rgba(49, 89, 81, 0.9) !important;
   color: #fff !important;
@@ -39,9 +42,6 @@
   border-bottom: 2px solid #fff !important;
   border-radius: 0 !important;
 }
-/* input{
-  background-color: rgba(49, 89, 81, 0.9) !important;
-} */
 .btn{
   background-color: var(--main-color) !important;
   border-radius: 2rem !important;

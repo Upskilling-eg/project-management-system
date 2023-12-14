@@ -15,7 +15,10 @@ import Tasks from './Components/Tasks/Tasks';
 import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
+
 import ChangePassword from './Components/ChangePassword/ChangePassword';
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   const { userData, saveUserData } = useContext(AuthContext)
@@ -51,7 +54,10 @@ function App() {
   }]);
 
   return (
-    <RouterProvider router={routes} />
+    <> <ToastContainer />
+     <RouterProvider router={routes} />
+    </>
+
   )
 }
 

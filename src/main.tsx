@@ -7,13 +7,14 @@ import React from "react";
  import "react-toastify/dist/ReactToastify.css";
  import "./index.css";
  import {AuthContextProvider} from "./Context/AuthContext.tsx";
+import ToastContextProvider from './Context/ToastContext';
 
  ReactDOM.createRoot(document.getElementById("root")!).render(
    <React.StrictMode>
-     
-       <AuthContextProvider>
+      <ToastContextProvider>
+        <AuthContextProvider>
          <App />
-       </AuthContextProvider>
-
+        </AuthContextProvider>
+      </ToastContextProvider>
    </React.StrictMode>
  );

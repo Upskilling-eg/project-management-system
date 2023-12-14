@@ -3,16 +3,16 @@ import { createContext,ReactNode } from 'react';
 import { toast } from 'react-toastify';
 
 interface ToastContextType{
-    getToastValue: (type: string, message: string) => void;
+    getToastValue: (type: ToastType, message: string) => void;
 }
 interface ToastContextProviderProps {
     children: ReactNode;
 }
-
+type ToastType = "success" | "error" | "info" | "warning";
 export const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 const ToastContextProvider: React.FC<ToastContextProviderProps> = (props)=>{
-    type ToastType = "success" | "error" | "info" | "warning";
+
     
     const getToastValue =(type: ToastType, message: string)=>{
         return toast[type](message, {

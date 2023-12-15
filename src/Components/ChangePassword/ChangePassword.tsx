@@ -28,7 +28,7 @@ export default function ChangePassword() {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
-     axios
+    axios
       .put(`${baseUrl}/Users/ChangePassword`, data)
       .then((response) => {
         console.log(response);
@@ -43,73 +43,83 @@ export default function ChangePassword() {
       })
   }
   return (
-    <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
-      <div className="text-center mb-2">
-        <img src={logo} alt="" className='img-fluid' />
-      </div>
-      <div className=' w-50'>
-        <form onSubmit={handleSubmit(onSubmit)}
-          action="" className="login-wrapper m-auto w-75 my-5 py-3 px-5">
-          <p className='text-white'>welcome to PMS</p>
-          <h2 className='title mb-5'>Change Password</h2>
-          <div className="form-group my-3">
-            <label className='label-title mb-2'> Old Password</label>
-            <input
-              {...register("oldPassword",
-                {
-                  required: true,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                })}
-              type="password"
-              name="password"
-              className="form-control custom-input" placeholder="Password" />
-            {errors.oldPassword && errors.oldPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
-            {errors.oldPassword && errors.oldPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
-          </div>
 
-          <div className="form-group my-3">
-            <label className='label-title mb-2'>New Password</label>
-            <input
-              {...register("newPassword",
-                {
-                  required: true,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                })}
-              type="password"
-              name="password"
-              className="form-control custom-input" placeholder="Password" />
-            {errors.newPassword && errors.newPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
-            {errors.newPassword && errors.newPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
-          </div>
+      <div className="d-flex auth-container justify-content-center align-items-center flex-column">
 
-          <div className="form-group my-3">
-            <label className='label-title mb-2'>confirm New Password</label>
-            <input
-              {...register("confirmNewPassword",
-                {
-                  required: true,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                })}
-              type="password"
-              name="password"
-              className="form-control custom-input" placeholder="confirmNewPassword" />
-            {errors.confirmNewPassword && errors.confirmNewPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
-            {errors.confirmNewPassword && errors.confirmNewPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
-          </div>
-          <div className="form-group my-3 d-flex justify-content-between">
-            <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
-            <Link to='/'
-              // to='/request-reset-pass'
-              className='text-white text-decoration-none'>Forgot Password?</Link>
-          </div>
-          <div className="form-group my-3">
-            <button type="submit" className="btn w-100">
-              Change Password
-            </button>
-          </div>
-        </form>
+
+            <div className="text-center mb-2">
+              <img src={logo} className='img-fluid' alt="logo" />
+            </div>
+            {/* form */}
+            <div className=' changewidth h-50'>
+            <form className="login-wrapper m-auto w-75 my-5 py-3 px-5" onSubmit={handleSubmit(onSubmit)}>
+              <p className='text-white'>welcome to PMS</p>
+              <h2 className='title mb-5'>Change Password</h2>
+
+              {/* // old Password */}
+              <div className="form-group my-3">
+                <label className='label-title mb-2'> Old Password</label>
+                <input
+                  {...register("oldPassword",
+                    {
+                      required: true,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                    })}
+                  type="password"
+                  name="password"
+                  className="form-control custom-input" placeholder="Password" />
+                {errors.oldPassword && errors.oldPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
+                {errors.oldPassword && errors.oldPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
+              </div>
+              {/* //New Password */}
+
+              <div className="form-group my-3">
+                <label className='label-title mb-2'>New Password</label>
+                <input
+                  {...register("newPassword",
+                    {
+                      required: true,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                    })}
+                  type="password"
+                  name="password"
+                  className="form-control custom-input" placeholder="Password" />
+                {errors.newPassword && errors.newPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
+                {errors.newPassword && errors.newPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
+              </div>
+              {/* //Confirm Password */}
+              <div className="form-group my-3">
+                <label className='label-title mb-2'>confirm New Password</label>
+                <input
+                  {...register("confirmNewPassword",
+                    {
+                      required: true,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                    })}
+                  type="password"
+                  name="password"
+                  className="form-control custom-input" placeholder="confirmNewPassword" />
+                {errors.confirmNewPassword && errors.confirmNewPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
+                {errors.confirmNewPassword && errors.confirmNewPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
+              </div>
+              {/* Buttuon login */}
+              <div className="form-group my-3 d-flex justify-content-between">
+                <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
+                <Link to='/'
+                  // to='/request-reset-pass'
+                  className='text-white text-decoration-none'>Forgot Password?</Link>
+              </div>
+              <div className="form-group my-3">
+                <button type="submit" className="btn w-100">
+                  Change Password
+                </button>
+              </div>
+            </form>
+            </div>
+
+
       </div>
-    </div>
+
 
   )
 }

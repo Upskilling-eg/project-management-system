@@ -57,7 +57,38 @@ button[type="submit"]{
 .sidebar-container .ps-sidebar-container {
   background-color: rgba(14, 56, 47, 1);
   color: #fff;
+  position: relative;
+
 }
 .sidebar-container .ps-sidebar-container .ps-menu-button:hover {
   background-color:  rgba(239, 155, 40, 0.3)
+}
+
+/* .nav-bg{
+  background-color: rgba(255, 255, 255, 1);
+} */
+
+.toggle-sidebar-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background: #EF9B28;
+  cursor: pointer;
+  /* Add any additional styling as needed */
+}
+
+.toggle-sidebar-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.sidebar-container.collapsed .toggle-sidebar-btn svg {
+  transform: rotate(180deg);
+}
+
+.custom-model{
+  width: 300px;
+}
+.changewidth{
+  width: 60%;
 }

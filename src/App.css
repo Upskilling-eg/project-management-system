@@ -4,7 +4,7 @@
   ;
 }
 .auth-container{
-  
+
   background-image: url('./assets/images/bg3.png');
   /* background-image: url(./assets/images/bg3.png); */
   background-size: cover;
@@ -48,7 +48,16 @@ form{
   background-color: var(--main-color) !important;
   border-radius: 2rem !important;
   color: #ffffff !important;
+
 }
 button[type="submit"]{
   font-size: 1.5rem;
+}
+/* side bar */
+.sidebar-container .ps-sidebar-container {
+  background-color: rgba(14, 56, 47, 1);
+  color: #fff;
+}
+.sidebar-container .ps-sidebar-container .ps-menu-button:hover {
+  background-color:  rgba(239, 155, 40, 0.3)
 }

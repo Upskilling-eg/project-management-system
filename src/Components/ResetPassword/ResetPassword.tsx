@@ -8,11 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../Context/AuthContext";
 import logo from "./../../assets/images/pms.png";
 import { ToastContext } from "../../Context/ToastContext";
+import { IAuth } from './../../Context/AuthContext';
+import { ToastContextType } from './../../Context/ToastContext';
 
 const ResetPassword: React.FC = () => {
-  const { baseUrl }: any = useContext(AuthContext);
-
-  const { getToastValue }: any = useContext(ToastContext);
+  const { baseUrl }: IAuth= useContext(AuthContext);
+  const { getToastValue }: ToastContextType= useContext(ToastContext);
 
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const ResetPassword: React.FC = () => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
+    // console.log(data);
     axios
       .post(`${baseUrl}/Users/Reset`, data)
       .then((response) => {
@@ -86,18 +87,18 @@ const ResetPassword: React.FC = () => {
           </div>
           <div className="form-group my-3">
             <label className="label-title mb-2">OTP Verification</label>
-            <input
+             <input
               {...register("seed", {
                 required: true,
-                pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                
               })}
               type="text"
               className="form-control custom-input"
-              placeholder="Enter OTP Verification"
+              placeholder="Enter OTP code Verification"
             />
 
-            {errors.seed && errors.seed.type === "required" && (
-              <span className="text-danger ">Otp is required</span>
+           {errors.seed && errors.seed.type === "required" && (
+              <span className="text-danger ">Otp code is required</span>
             )}
 
           

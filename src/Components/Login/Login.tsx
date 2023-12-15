@@ -4,18 +4,16 @@
 import axios from 'axios';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/pms.png';
 import { AuthContext } from './../../Context/AuthContext';
 import { ToastContext } from '../../Context/ToastContext';
-import { useNavigate } from 'react-router-dom';
+
 
 const Login: React.FC = ()=> {
   let { saveUserData, baseUrl} = useContext(AuthContext);
-  let { getToastValue} = useContext(AuthContext);
- 
+  let {getToastValue} = useContext(ToastContext);
   const navigate = useNavigate();
- 
   type FormValues = {
     email: string,
     password: string
@@ -26,14 +24,14 @@ const Login: React.FC = ()=> {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  
+
   const onSubmit: SubmitHandler<FormValues> = async(data) =>{
     console.log(data);
     await axios
     .post(`${baseUrl}/Users/Login`, data)
     .then((response) => {
       console.log(response);
-      const userToken = localStorage.setItem('userToken', response.data.token )
+      localStorage.setItem('userToken', response.data.token )
       saveUserData();
       navigate('/dashboard');
       getToastValue("success", "Loged in successfully!")
@@ -43,11 +41,12 @@ const Login: React.FC = ()=> {
       getToastValue("error", error.response?.data.message || "An error occurred");
     })
   }
-  
+
+
   return (
     <div className=' vh-100 auth-container d-flex justify-content-center align-items-center flex-column'>
         <div className="text-center mb-2">
-            <img src={logo} alt="" className='img-fluid' />
+          <img src={logo} alt="" className='img-fluid' />
         </div>
         <div className=' w-50 h-50'>
           <form onSubmit={handleSubmit(onSubmit)}
@@ -66,7 +65,7 @@ const Login: React.FC = ()=> {
                         className="form-control custom-input"
                         placeholder="Enter your E-mail"/>
 
-                      {errors.email && errors.email.type === "required" && (<span className='text-danger '>Email is required</span>)}
+              {errors.email && errors.email.type === "required" && (<span className='text-danger '>Email is required</span>)}
 
                       {errors.email && errors.email.type === "pattern" && (<span className='text-danger '>Email is invalid</span>)}
                 </div>
@@ -85,7 +84,7 @@ const Login: React.FC = ()=> {
                   </div>
                   <div className="form-group my-3 d-flex justify-content-between">
                       <Link to="/register" className="text-white text-decoration-none">Register Now?</Link>
-                      <Link 
+                      <Link
                       to='/request-reset'
                       className='text-white text-decoration-none'>Forgot Password?</Link>
                   </div>
@@ -95,13 +94,12 @@ const Login: React.FC = ()=> {
                     </button>
                   </div>
           </form>
-        </div>      
+        </div>
     </div>
 
   )
 }
 export default Login;
-
 
 
 

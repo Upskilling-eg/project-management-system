@@ -12,13 +12,14 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Projects from './Components/Projects/Projects';
 import Users from './Components/Users/Users';
 import Tasks from './Components/Tasks/Tasks';
-import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
+import ChangePassword from './Components/ChangePassword/ChangePassword';
+import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  const { userData, saveUserData } = useContext(AuthContext)
+  let {userData,saveUserData}= useContext(AuthContext);
 
   const routes = createBrowserRouter([{
     path: '/',
@@ -31,6 +32,7 @@ function App() {
       { path: 'request-reset', element: <RequestReset /> },
       { path: 'reset-password', element: <ResetPassword /> },
       { path: 'verify-user', element: <VerifyUser /> },
+      { path: 'change-password', element: <ChangePassword /> }
     ]
   }, {
     path: 'dashboard',
@@ -53,7 +55,7 @@ function App() {
     <> <ToastContainer />
      <RouterProvider router={routes} />
     </>
-   
+
   )
 }
 

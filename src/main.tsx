@@ -18,3 +18,18 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </AuthContextProvider>
   </React.StrictMode>
 );
+
+
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <AuthContextProvider>
+      <ToastContextProvider>
+      <App />
+      </ToastContextProvider>
+
+    </AuthContextProvider>
+
+  </React.StrictMode>,
+)
+

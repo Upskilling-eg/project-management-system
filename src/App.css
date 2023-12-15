@@ -1,5 +1,82 @@
+body{
+  color:#fff;
+  font-family: 'segoe ui light';
+}
 .auth-container{
-  background-image: url(./assets/images/auth-bg.png);
+  background-image: url(./assets/images/bg3.png);
   background-size: cover;
-  background-position: center center;
+  background-position: center center
+}
+
+.auth-container form{
+  background-color: rgba(49,89,81,0.5);
+  color:#fff 
+}
+
+.auth-container span{
+  font-size: 10px;
+} 
+.auth-container form h4{
+  color:#EF9B28;
+  position: relative;
+} 
+.auth-container form h4::after{
+  content:'';
+  width: 10px;
+  height: 2px;
+  background-color: #EF9B28;
+  position: absolute;
+  top:100%;
+  left:0
+}
+.auth-container form input,.auth-container form input:focus {
+  border:none;
+  border-radius: none;
+  border-bottom: 1px #c5c5c5 solid;
+  color: #fff;
+  background-color: transparent;
+  font-size: 14px;
+}
+.auth-container form input::placeholder{
+  color:#fff
+}
+.auth-container form button{
+  background-color: #EF9B28;
+  border-radius: 50px;
+}
+
+.sidebar-cont{
+  background-color: #1F263E;
+  border-top-right-radius: 50px;
+}
+
+.sidebar-container .ps-sidebar-container{
+ background-color: #1F263E;
+ height: 100vh;
+ color: #fff;
+ border-top-right-radius: 50px;
+}
+
+.sidebar-container .ps-sidebar-root
+{
+  border: none;
+  width: 200px;
+  min-width: 200px;
+}
+
+.sidebar-container .ps-sidebar-container .ps-menu-button:hover{
+  background-color: rgba(0, 146, 71, 0.5)
+}
+.sidebar-container .ps-sidebar-container .logo-toggle{
+  margin: 20px 0;
+}
+.sidebar-container .ps-sidebar-container .logo-toggle a:hover{
+  background-color: transparent
+
+}
+.sidebar-container .ps-sidebar-container .logo-toggle span{
+  width: fit-content;
+}
+.logo-toggle img{
+  width: 150px;
 }

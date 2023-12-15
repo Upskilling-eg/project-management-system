@@ -8,7 +8,7 @@ import logo from './../../assets/images/pms.png';
 import { ToastContext } from '../../Context/ToastContext';
 
 export default function ChangePassword() {
-  const { baseUrl } = useContext(AuthContext);
+  const { baseUrl, requestHeaders } = useContext(AuthContext);
 
   const { getToastValue } = useContext(ToastContext)
 
@@ -16,7 +16,7 @@ export default function ChangePassword() {
 
   interface FormValues {
     oldPassword: string,
-    newPassword: string
+    newPassword: string,
     confirmNewPassword: string
   }
 
@@ -26,10 +26,12 @@ export default function ChangePassword() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> =async (data) => {
     console.log(data);
-    axios
-      .put(`${baseUrl}/Users/ChangePassword`, data)
+  await  axios
+      .put(`${baseUrl}/Users/ChangePassword`, data,{
+        headers: requestHeaders,
+      })
       .then((response) => {
         console.log(response);
         // localStorage.setItem('userToken', response.data.token)
@@ -60,14 +62,12 @@ export default function ChangePassword() {
               <div className="form-group my-3">
                 <label className='label-title mb-2'> Old Password</label>
                 <input
+                className="form-control custom-input"  type="password" placeholder="Password"
                   {...register("oldPassword",
                     {
                       required: true,
                       pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                    })}
-                  type="password"
-                  name="password"
-                  className="form-control custom-input" placeholder="Password" />
+                    })} />
                 {errors.oldPassword && errors.oldPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
                 {errors.oldPassword && errors.oldPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
               </div>
@@ -76,14 +76,13 @@ export default function ChangePassword() {
               <div className="form-group my-3">
                 <label className='label-title mb-2'>New Password</label>
                 <input
+                 className="form-control custom-input" type="password" placeholder="Password"
                   {...register("newPassword",
                     {
                       required: true,
                       pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                     })}
-                  type="password"
-                  name="password"
-                  className="form-control custom-input" placeholder="Password" />
+                  />
                 {errors.newPassword && errors.newPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
                 {errors.newPassword && errors.newPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
               </div>
@@ -91,14 +90,13 @@ export default function ChangePassword() {
               <div className="form-group my-3">
                 <label className='label-title mb-2'>confirm New Password</label>
                 <input
+                className="form-control custom-input" type="password" placeholder="confirmNewPassword"
                   {...register("confirmNewPassword",
                     {
                       required: true,
                       pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                     })}
-                  type="password"
-                  name="password"
-                  className="form-control custom-input" placeholder="confirmNewPassword" />
+                   />
                 {errors.confirmNewPassword && errors.confirmNewPassword.type === "required" && (<span className='text-danger'>Password is required</span>)}
                 {errors.confirmNewPassword && errors.confirmNewPassword.type === "pattern" && (<span className='text-danger '>password is invalid</span>)}
               </div>

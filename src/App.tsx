@@ -17,8 +17,7 @@ import { AuthContext } from './Context/AuthContext';
 import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 
 function App() {
-  let {userData,saveUserData}:any = useContext(AuthContext)
-
+  let {userData,saveUserData,userRole}:any = useContext(AuthContext)
   const routes = createBrowserRouter([{
      path:'/',
      element:<AuthLayout/>,
@@ -27,7 +26,7 @@ function App() {
       {index:true,element:<Login saveUserData={saveUserData}/>},
       {path:'login',element:<Login saveUserData={saveUserData}/>},
       {path:'register',element:<Register/>},
-      {path:'request-reset',element:<RequestReset/>},
+      {path:'reset-pass-request',element:<RequestReset/>},
       {path:'reset-password',element:<ResetPassword/>},
       {path:'verify-user',element:<VerifyUser/>},
      ]

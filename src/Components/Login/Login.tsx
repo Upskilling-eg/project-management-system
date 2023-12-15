@@ -87,10 +87,15 @@ export default function Login(props:any) {
                 )}
               </div>
 
-              <div className="form-group my-3 position-relative d-flex justify-content-end">
+              <div className="form-group my-3 position-relative d-flex justify-content-between">
+              <Link to="/register" className="text-white text-decoration-none">
+                  Registeration
+                </Link>
                 <Link to="/reset-pass-request" className="text-white text-decoration-none">
                   Forgot Password?
                 </Link>
+
+             
               </div>
 
               <div className="form-group my-3">

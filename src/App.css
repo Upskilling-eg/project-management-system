@@ -44,3 +44,39 @@ body{
   background-color: #EF9B28;
   border-radius: 50px;
 }
+
+.sidebar-cont{
+  background-color: #1F263E;
+  border-top-right-radius: 50px;
+}
+
+.sidebar-container .ps-sidebar-container{
+ background-color: #1F263E;
+ height: 100vh;
+ color: #fff;
+ border-top-right-radius: 50px;
+}
+
+.sidebar-container .ps-sidebar-root
+{
+  border: none;
+  width: 200px;
+  min-width: 200px;
+}
+
+.sidebar-container .ps-sidebar-container .ps-menu-button:hover{
+  background-color: rgba(0, 146, 71, 0.5)
+}
+.sidebar-container .ps-sidebar-container .logo-toggle{
+  margin: 20px 0;
+}
+.sidebar-container .ps-sidebar-container .logo-toggle a:hover{
+  background-color: transparent
+
+}
+.sidebar-container .ps-sidebar-container .logo-toggle span{
+  width: fit-content;
+}
+.logo-toggle img{
+  width: 150px;
+}

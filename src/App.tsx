@@ -19,7 +19,7 @@ import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  let {userData,saveUserData}= useContext(AuthContext);
+  let {userData,saveUserData,userRole}= useContext(AuthContext);
 
   const routes = createBrowserRouter([{
     path: '/',

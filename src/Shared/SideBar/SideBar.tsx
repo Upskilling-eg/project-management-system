@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from './../../assets/images/pms.png';
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-// import {useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import ChangePassword from "../../Components/ChangePassword/ChangePassword";
+import { AuthContext } from "../../Context/AuthContext";
 
 const SideBar: React.FC = () => {
 
+  let {userRole}= useContext(AuthContext);
+console.log(userRole);
 
   //*************sidebar collapse***************
   let [isCollapsed, setIsCollapsed] = useState(false);
   let handleToggle = () => {
     setIsCollapsed(!isCollapsed);
   };
-  // //  logout Function
-  // const navigate = useNavigate();
-  // function logOut(): void {
-  //   localStorage.removeItem("userToken");
-  //   navigate("/login");
-  // }
+  //  logout Function
+  const navigate = useNavigate();
+  function logOut(): void {
+    localStorage.removeItem("userToken");
+    navigate("/login");
+  }
 
   //Model
   const [show, setShow] = useState(false);
@@ -54,12 +57,13 @@ const SideBar: React.FC = () => {
           >
             Home
           </MenuItem>
+          {userRole == 'Manager'?
           <MenuItem
             icon={<i className="fa fa-users"></i>}
             component={<Link to="/dashboard/users" />}
           >
             Users
-          </MenuItem>
+          </MenuItem>:''}
           <MenuItem
             icon={<i className="fa-solid fa-building-shield"></i>}
             component={<Link to="/dashboard/projects" />}
@@ -81,7 +85,7 @@ const SideBar: React.FC = () => {
           </MenuItem>
 
           <MenuItem
-            // onClick={logOut}
+            onClick={logOut}
             icon={<i className="fa-solid fa-right-from-bracket"></i>}
 
           >

@@ -7,6 +7,7 @@ export interface IAuth {
   saveUserData: () => void;
   requestHeaders: any;
   baseUrl: string;
+  userRole: string;
 }
 
 // Create the AuthContext and set the initial value to null
@@ -20,12 +21,14 @@ interface AuthContextProviderProps {
 // AuthContextProvider component that provides the AuthContext to its children
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = (props) => {
   const [userData, setUserData] = useState<any | null>(null);
+  const [userRole, setUserRole] = useState<any | null>(null);
 
   // Save user data function
   const saveUserData = () => {
     const encodedToken = localStorage.getItem("userToken");
     const decodedToken = jwtDecode(encodedToken!);
     setUserData(decodedToken);
+    setUserRole(decodedToken.userGroup)
   };
 
   // Compute request headers
@@ -46,6 +49,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = (props) =
     saveUserData,
     requestHeaders,
     baseUrl: "http://upskilling-egypt.com:3003/api/v1",
+    userRole
   };
 
   return <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>;

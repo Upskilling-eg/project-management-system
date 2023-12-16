@@ -15,6 +15,7 @@ import Tasks from './Components/Tasks/Tasks';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
 import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
+import AddProject from './Components/AddProject/AddProject';
 
 function App() {
   let {userData,saveUserData,userRole}:any = useContext(AuthContext)
@@ -40,6 +41,8 @@ function App() {
     children:[
      {index:true,element:<Dashboard userData={userData}/>},
      {path:'projects',element:<Projects/>},
+     {path:'add-Project',element:<AddProject/>},
+
      {path:'users',element:<Users/>},
      {path:'tasks',element:<Tasks/>},
     ]

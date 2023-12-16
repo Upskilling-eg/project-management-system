@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 export default function MasterLayout() {
   return (
     <>
+            <NavBar />
 
      <div className="d-flex">
         <div className="sidebar-cont">
@@ -14,7 +15,6 @@ export default function MasterLayout() {
 
         <div className="w-100">
           <div>
-            <NavBar />
 
             <Outlet />
           </div>

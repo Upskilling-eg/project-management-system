@@ -8,7 +8,7 @@ import logo from "../../assets/images/PMS 3.svg";
 export default function SideBar() {
   let {userRole}:any = useContext(AuthContext)
    
-  let [isCollapsed, setIsCollapsed] = useState(false);
+  let [isCollapsed, setIsCollapsed] = useState(true);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,9 +27,9 @@ export default function SideBar() {
     <Sidebar collapsed={isCollapsed}>
     <Menu>
       <MenuItem
-        className="logo-toggle"
+        className="logo-toggle d-flex justify-content-center"
         onClick={handleToggle}
-        icon={<img src={logo} alt="" />}
+        icon={isCollapsed?<i className="fa fa-arrow-right" aria-hidden="true"></i>:<i className="fa fa-arrow-left" aria-hidden="true"></i>}
       ></MenuItem>
       <MenuItem
               icon={<i className="fa fa-home" aria-hidden="true"></i>}
@@ -48,7 +48,7 @@ export default function SideBar() {
       </MenuItem>:''}
 
       <MenuItem
-              icon={<i className="fa fa-key" aria-hidden="true"></i>}
+              icon={<i className="fa fa-project-diagram" aria-hidden="true"></i>}
 
         component={<Link to="/dashboard/projects" />}
       >
@@ -56,7 +56,7 @@ export default function SideBar() {
       </MenuItem>
 
       <MenuItem
-        icon={<i className="fa fa-key" aria-hidden="true"></i>}
+        icon={<i className="fa fa-tasks" aria-hidden="true"></i>}
         component={<Link to="/dashboard/tasks" />}
 
       >

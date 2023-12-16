@@ -1,11 +1,18 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../Context/AuthContext'
-
+import logo from './../../assets/images/nav-logo.png'
+import avatar from './../../assets/images/avatar.png'
 export default function NavBar() {
   const {userData}:any = useContext(AuthContext)
+  console.log(userData);
+  
   return (
-    <nav className="navbar navbar-expand-lg bg-light mt-5">
-        <div className="container-fluid justify-content-end">
+    <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          <img src={logo} alt="" />
+        </a>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -19,10 +26,12 @@ export default function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              <li className="nav-item d-flex">
+<div>              <img className="mx-2" src={avatar} alt="user-img" />
+</div>
                 <a className="nav-link" href="#">
-                  {/* <img className="mx-2" src={avatar} alt="user-img" /> */}
                   {userData.userName}
+                  <p>{userData.userEmail}</p>
                 </a>
               </li>
             </ul>

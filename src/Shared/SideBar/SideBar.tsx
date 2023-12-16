@@ -8,6 +8,8 @@ import logo from "../../assets/images/PMS 3.svg";
 export default function SideBar() {
   let {userRole}:any = useContext(AuthContext)
    
+
+  
   let [isCollapsed, setIsCollapsed] = useState(false);
   const [show, setShow] = useState(false);
 

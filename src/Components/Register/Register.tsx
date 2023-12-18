@@ -60,7 +60,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="auth-container container-fluid">
-    <ToastContainer />
+    
     <div className="row vh-100 justify-content-center align-items-center">
       <div className="col-md-6">
         <div className=" p-2">

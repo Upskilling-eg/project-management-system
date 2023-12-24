@@ -6,7 +6,6 @@ export let AuthContext = createContext({});
 export default function AuthContextProvider(props:any) {
   const [userData, setUserData] = useState(null);
   const [userRole, setUserRole] = useState(null)
-  console.log('hamadaaaaaaaaaaaa testttttttttttttttt');
 
   let requestHeaders = {
     Authorization: `Bearer ${localStorage.getItem("userToken")}`,

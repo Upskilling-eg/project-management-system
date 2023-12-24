@@ -5,15 +5,16 @@ import noData from './../../assets/images/no-data.png'
 import { useNavigate } from 'react-router';
 export default function Projects() {
   const [projects, setProjects] = useState([])
-  const { baseUrl,requestHeaders } : any = useContext(AuthContext);
+  const { baseUrl,requestHeaders,userRole } : any = useContext(AuthContext);
+
   const navigate=useNavigate()
 
   let getProjectsList = () =>{
     axios
-    .get(`${baseUrl}/Project/manager`,{headers:requestHeaders})
+    .get(`${baseUrl}/Project/manager`,{headers:requestHeaders,params:{pageSize:100}})
     .then((response:any) => {
     
-      setProjects(response?.data)
+      setProjects(response?.data?.data)
 
     })
     .catch((error:any) => {
@@ -35,7 +36,7 @@ export default function Projects() {
     <>
     <div className="header bg-info d-flex justify-content-between p-3">
       <h3>Projects</h3>
-      <button onClick={navigateToNew} className='btn btn-warning rounded-5'><i className="fa fa-plus" aria-hidden="true"></i> Add new project</button>
+      {userRole=='Manager'? <button onClick={navigateToNew} className='btn btn-warning rounded-5'><i className="fa fa-plus" aria-hidden="true"></i> Add new project</button>:''}
 
     </div>
 
@@ -47,7 +48,8 @@ export default function Projects() {
       <th scope="col">Description</th>
      
       <th scope="col">Num of tasks</th>
-      <th scope="col"></th>
+      {userRole=='Manager'?
+      <th scope="col">actions</th>:''}
 
     </tr>
   </thead>
@@ -57,7 +59,9 @@ export default function Projects() {
            <th scope="row">{project?.title}</th>
            <td>{project?.description}</td>
            <td>{project?.task?.length}</td>
-           <td></td>
+           {userRole=='Manager'?
+           <td><i className="fa fa-trash" aria-hidden="true"></i><i className="fa fa-edit" aria-hidden="true"></i></td>:''}
+          
          </tr>
    )):<div className='text-center'><img src={noData} alt="" /></div>}
   </tbody>
